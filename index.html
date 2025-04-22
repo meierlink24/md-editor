@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MD-editor</title>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js"></script>
+    <script src="main.js" defer></script>
+    <link rel="stylesheet" href="md.css">
+
+</head>
+<body>
+<div class="main-box">
+
+    <div class="button-box">
+
+      <button id="md-pdf">
+        MD -> PDF
+      </button>
+
+
+    <div class="editor-preview-box">
+
+        <div class="editor">
+
+            <textarea  id="input" cols="60" rows="10"></textarea>
+        
+        </div>
+
+        <div class="preview">
+
+            <textarea  id="output" cols="60" rows="10"></textarea>
+        
+        </div>
+
+    </div>
+    
+    
+</div>    
+</body>
+</html>
