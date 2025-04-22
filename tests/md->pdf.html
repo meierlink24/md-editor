@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>MD Parser Tests</title>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="../main.js"></script>
+  <style>
+    body { font-family: monospace; padding: 20px; }
+    .pass { color: green; }
+    .fail { color: red; }
+  </style>
+</head>
+<body>
+  <h1>MARKDOWN PARSING TEST</h1>
+  <div id="results"></div>
+
+  <script>
+    function assertEquals(description, actual, expected) {
+      const resultDiv = document.getElementById('results');
+      const result = document.createElement('div');
+      if (actual === expected) {
+        result.textContent = ` ${description}`;
+        result.className = 'pass';
+      } else {
+        result.textContent = ` ${description} (Expected: "${expected}", Got: "${actual}")`;
+        result.className = 'fail';
+      }
+      resultDiv.appendChild(result);
+    }
+
+    function runTests() {
+      
+      const parseMarkdown = (md) => {
+        const container = document.createElement('div');
+        container.innerHTML = marked.parse(md);
+        return container;
+      };
+
+      
+      const h1 = parseMarkdown('# Hello');
+      assertEquals("H1 renders correctly", h1.querySelector('h1')?.textContent, 'Hello');
+
+      const bold = parseMarkdown('**Bold**');
+      assertEquals("Bold renders correctly", bold.querySelector('strong')?.textContent, 'Bold');
+
+      const italic = parseMarkdown('*Italic*');
+      assertEquals("Italic renders correctly", italic.querySelector('em')?.textContent, 'Italic');
+
+      assertEquals("Image alt text", img.querySelector('img')?.alt, 'Alt Text');
+ const imgSrc = img.querySelector('img')?.src;
+if (!imgSrc.includes('https://www.google.com/url')) {
+  console.error(" Image src does not match expected prefix");
+} else {
+  console.log("Image src has expected domain/prefix");
+}
+
+      const list = parseMarkdown('- Item 1\n- Item 2');
+      const items = list.querySelectorAll('li');
+      assertEquals("List item 1", items[0]?.textContent, 'Item 1');
+      assertEquals("List item 2", items[1]?.textContent, 'Item 2');
+    }
+
+    runTests();
+  </script>
+</body>
+</html>
